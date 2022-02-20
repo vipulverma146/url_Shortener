@@ -17,6 +17,7 @@ app.get('/', async (req, res) => {
 })
 // posting original url
 app.post('/shortUrls', async (req, res) => {
+  //adding entry in db
   await ShortUrl.create({ full: req.body.fullUrl })
 
   res.redirect('/');
