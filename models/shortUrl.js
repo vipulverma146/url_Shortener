@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+// automatically generate ShortUrl
 const shortId = require('shortid')
 
 const shortUrlSchema = new mongoose.Schema({
