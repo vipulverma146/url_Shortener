@@ -10,18 +10,18 @@ mongoose.connect('mongodb://localhost/urlShortener', {
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }))
-
+// redering data on hoeme
 app.get('/', async (req, res) => {
   const shortUrls = await ShortUrl.find()
   res.render('index', { shortUrls: shortUrls })
 })
-
+// posting original url
 app.post('/shortUrls', async (req, res) => {
   await ShortUrl.create({ full: req.body.fullUrl })
 
   res.redirect('/');
 })
-
+// redirecting to original url
 app.get('/:shortUrl', async (req, res) => {
   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
   if (shortUrl == null) return res.sendStatus(404)
